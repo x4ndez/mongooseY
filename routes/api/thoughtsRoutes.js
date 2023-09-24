@@ -5,9 +5,9 @@ const {
     createThought,
     getThoughtById,
     updateThoughtById,
+    deleteThoughtById,
 
 } = require("../../controllers/thoughtsController");
-const { updateMany } = require("../../models/Thoughts");
 
 // PATH: localhost/api/thoughts
 
@@ -15,7 +15,8 @@ router
     .route("/")
     .get(getAllThoughts)
     .post(createThought)
-    .put(updateThoughtById);
+    .put(updateThoughtById)
+    .delete(deleteThoughtById);
 
 router
     .route("/:thoughtId")

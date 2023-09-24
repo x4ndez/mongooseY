@@ -91,7 +91,23 @@ module.exports = {
 
     },
 
-    // DELETE to remove a thought by its _id
+    async deleteThoughtById(req, res) {
+
+        // DELETE to remove a thought by its _id
+
+        try {
+
+            const deleteThoughtId = req.body._idThought;
+
+            const query = await Thought.findByIdAndDelete(deleteThoughtId);
+
+            res.status(200).json(query);
+
+        } catch (err) {
+            res.status(500).json(err);
+        }
+
+    },
 
     // /api/thoughts/:thoughtId/reactions
 
