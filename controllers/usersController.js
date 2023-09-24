@@ -70,6 +70,28 @@ module.exports = {
             res.status(500).json(err);
         }
 
+    },
+
+    async updateUserById(req, res) {
+
+        // PUT to update a user by its _id
+
+        try {
+
+            const updateUserId = req.body._id;
+            const updateData = {
+                username: req.body.username,
+            }
+
+            const query = await User.findByIdAndUpdate(updateUserId, updateData, {
+                returnDocument: "after",
+            });
+            res.status(200).json(query);
+
+        } catch (err) {
+            res.status(500).json(err);
+        }
+
     }
 
 }
