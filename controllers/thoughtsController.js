@@ -123,7 +123,7 @@ module.exports = {
                 reactionBody: req.body.reactionBody,
                 username: req.body.username,
 
-            }
+            };
 
             const query = await Thought.findByIdAndUpdate(
                 thoughtId,
