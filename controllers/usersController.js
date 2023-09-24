@@ -55,19 +55,21 @@ module.exports = {
 
     },
 
-    // async deleteUserById(req, res) {
+    async deleteUserById(req, res) {
 
-    //     // DELETE to remove user by its _id
+        // DELETE to remove user by its _id
 
-    //     try {
+        try {
 
-    //         const user = await User.findById(req.params._id);
-    //         res.status(200).json(user);
+            const deleteUserId = req.body._id;
 
-    //     } catch (err) {
-    //         res.status(500).json(err);
-    //     }
+            const query = await User.findByIdAndDelete(deleteUserId);
+            res.status(200).json(query);
 
-    // }
+        } catch (err) {
+            res.status(500).json(err);
+        }
+
+    }
 
 }
