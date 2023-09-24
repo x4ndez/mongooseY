@@ -9,7 +9,8 @@ module.exports = {
         try {
 
             const users = await User.find({})
-                .populate("friends");
+                .populate("friends")
+                .populate("thoughts");
 
             res.status(200).json(users);
 
