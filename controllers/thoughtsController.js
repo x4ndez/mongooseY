@@ -18,7 +18,23 @@ module.exports = {
 
     },
 
-    // GET to get a single thought by its _id
+    async getThoughtById(req, res) {
+
+        // GET to get a single thought by its _id
+
+        try {
+
+            const thoughtId = req.params.thoughtId;
+
+            const thought = await Thought.findById(thoughtId);
+
+            res.status(200).json(thought);
+
+        } catch (err) {
+            res.status(500).json(err);
+        }
+
+    },
 
     async createThought(req, res) {
 
