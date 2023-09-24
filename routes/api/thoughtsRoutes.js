@@ -1,7 +1,14 @@
 const router = require("express").Router();
-const {}
-= require("../../controllers/thoughtsController");
+const {
+
+    getAllThoughts,
+
+} = require("../../controllers/thoughtsController");
 
 // PATH: localhost/api/thoughts
+
+router
+    .route("/")
+    .get(getAllThoughts);
 
 module.exports = router;
