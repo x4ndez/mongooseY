@@ -111,7 +111,37 @@ module.exports = {
 
     // /api/thoughts/:thoughtId/reactions
 
-    // POST to create a reaction stored in a single thought's reactions array field
+    async pushReactionToThought(req, res) {
+
+        // POST to create a reaction stored in a single thought's reactions array field
+
+        try {
+
+            const thoughtId = req.params.thoughtId;
+            const reaction = {
+
+                reactionBody: req.body.reactionBody,
+                username: req.body.username,
+
+            }
+
+            const query = await Thought.findByIdAndUpdate(
+                thoughtId,
+                {
+                    $push: { reactions: reaction }
+                },
+                {
+                    returnDocument: "after",
+                });
+
+            res.status(200).json(query);
+
+        } catch (err) {
+            res.status(500).json(err);
+        }
+
+    },
+
 
     // DELETE to pull and remove a reaction by the reaction's reactionId value
 
