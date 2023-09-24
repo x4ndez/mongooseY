@@ -86,7 +86,7 @@ module.exports = {
             const updateUserId = req.body._id;
             const updateData = {
                 username: req.body.username,
-            }
+            };
 
             const query = await User.findByIdAndUpdate(updateUserId, updateData, {
                 returnDocument: "after",

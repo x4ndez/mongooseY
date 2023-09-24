@@ -68,7 +68,28 @@ module.exports = {
 
     },
 
-    // PUT to update a thought by its _id
+    async updateThoughtById(req, res) {
+
+        // PUT to update a thought by its _id
+
+        try {
+
+            const updateThoughtId = req.body._idThought;
+            const updateData = {
+                thoughtText: req.body.thoughtText,
+            };
+
+            const query = await Thought.findByIdAndUpdate(updateThoughtId, updateData, {
+                returnDocument: "after",
+            });
+
+            res.status(200).json(query);
+
+        } catch (err) {
+            res.status(500).json(err);
+        }
+
+    },
 
     // DELETE to remove a thought by its _id
 
