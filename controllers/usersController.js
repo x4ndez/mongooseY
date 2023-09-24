@@ -123,6 +123,32 @@ module.exports = {
             res.status(500).json(err);
         }
 
+    },
+
+    async deleteFriend(req, res) {
+
+        // DELETE to remove a friend from a user's friend list
+
+        try {
+
+            const userId = req.params.userId;
+            const friendId = req.params.friendId;
+
+            const query = await User.findByIdAndUpdate(
+                userId,
+                {
+                    $pull: { friends: friendId }
+                },
+                {
+                    returnDocument: "after",
+                });
+
+            res.status(200).json(query);
+
+        } catch (err) {
+            res.status(500).json(err);
+        }
+
     }
 
 }
