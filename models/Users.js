@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const thoughtsSchema = require("./Thoughts");
+const Thought = require("./Thoughts");
 
 const usersSchema = new Schema(
 
@@ -17,7 +17,12 @@ const usersSchema = new Schema(
             //TODO: Add validation for email >> https://mongoosejs.com/docs/validation.html
             // match: ,
         },
-        thoughts: [thoughtsSchema],
+        thoughts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "thought",
+            }
+        ],
         // friends: [usersSchema],
     }
 

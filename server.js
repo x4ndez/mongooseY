@@ -2,7 +2,7 @@ const express = require('express');
 const routes = require("./routes");
 const db = require('./config/mongodb');
 
-// const { Genre } = require('./models');
+const { User, Thought } = require('./models');
 // const { ObjectId } = require("mongodb");
 
 const PORT = process.env.PORT || 3001;
