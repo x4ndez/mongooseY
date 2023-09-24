@@ -1,7 +1,14 @@
 const router = require("express").Router();
-const { }
-    = require("../../controllers/usersController");
+const {
+
+    getAllUsers,
+
+} = require("../../controllers/usersController");
 
 // PATH: localhost/api/users
+
+router
+    .route("/")
+    .get(getAllUsers);
 
 module.exports = router;
