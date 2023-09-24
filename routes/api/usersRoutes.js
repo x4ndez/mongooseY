@@ -6,6 +6,8 @@ const {
     createUser,
     updateUserById,
     deleteUserById,
+    addFriend,
+    deleteFriend,
 
 } = require("../../controllers/usersController");
 
@@ -22,8 +24,13 @@ router
     .route("/:_id")
     .get(getUserById);
 
-// PUT to update a user by its _id
+//BONUS: Remove a user's associated thoughts when deleted.
 
-// DELETE to remove user by its _id
+router
+    .route("/:userId/friends/:friendId")
+    .post(addFriend);
+// .delete(deleteFriend);
+
+
 
 module.exports = router;

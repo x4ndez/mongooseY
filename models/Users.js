@@ -23,7 +23,12 @@ const usersSchema = new Schema(
                 ref: "thought",
             }
         ],
-        // friends: [usersSchema],
+        friends: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "user",
+            }
+        ],
     }
 
     //Create a virtual called friendCount that retrieves the length of the user's friends array field on query.

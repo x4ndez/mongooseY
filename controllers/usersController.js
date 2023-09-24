@@ -8,7 +8,9 @@ module.exports = {
 
         try {
 
-            const users = await User.find({});
+            const users = await User.find({})
+                .populate("friends");
+
             res.status(200).json(users);
 
         } catch (err) {
@@ -24,6 +26,7 @@ module.exports = {
         try {
 
             const user = await User.findById(req.params._id);
+
             res.status(200).json(user);
 
         } catch (err) {
@@ -46,6 +49,7 @@ module.exports = {
             };
 
             const query = await User.create(newUser);
+
             res.status(200).json(query);
 
         } catch (err) {
@@ -63,6 +67,7 @@ module.exports = {
             const deleteUserId = req.body._id;
 
             const query = await User.findByIdAndDelete(deleteUserId);
+
             res.status(200).json(query);
 
         } catch (err) {
@@ -85,6 +90,33 @@ module.exports = {
             const query = await User.findByIdAndUpdate(updateUserId, updateData, {
                 returnDocument: "after",
             });
+
+            res.status(200).json(query);
+
+        } catch (err) {
+            res.status(500).json(err);
+        }
+
+    },
+
+    async addFriend(req, res) {
+
+        // POST to add a new friend to a user's friend list
+
+        try {
+
+            const userId = req.params.userId;
+            const friendId = req.params.friendId;
+
+            const query = await User.findByIdAndUpdate(
+                userId,
+                {
+                    $push: { friends: friendId }
+                },
+                {
+                    returnDocument: "after",
+                });
+
             res.status(200).json(query);
 
         } catch (err) {
