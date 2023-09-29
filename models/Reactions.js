@@ -1,4 +1,9 @@
 const { Schema } = require("mongoose");
+const {
+
+    beautifyDate,
+
+} = require("../util");
 
 const reactionsSchema = new Schema(
 
@@ -16,13 +21,20 @@ const reactionsSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now,
-            //Use a getter method to format the timestamp on query
+            //Use a getter method to format the timestamp on querys
+            get: beautifyDate,
         },
         username: {
             type: String,
             required: true,
         },
-        //This will not be a model, but rather will be used as the reaction field's subdocument schema in the Thought model.
+    },
+    {
+
+        toJSON: {
+            getters: true,
+        },
+
     }
 );
 

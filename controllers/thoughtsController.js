@@ -27,6 +27,7 @@ module.exports = {
             const thoughtId = req.params.thoughtId;
 
             const thought = await Thought.findById(thoughtId);
+            console.log(thought, thought.createdAt);
 
             res.status(200).json(thought);
 
@@ -108,8 +109,6 @@ module.exports = {
         }
 
     },
-
-    // /api/thoughts/:thoughtId/reactions
 
     async pushReactionToThought(req, res) {
 
