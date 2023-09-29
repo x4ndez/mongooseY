@@ -24,8 +24,6 @@ router
     .route("/:_id")
     .get(getUserById);
 
-//BONUS: Remove a user's associated thoughts when deleted.
-
 router
     .route("/:userId/friends/:friendId")
     .post(addFriend)

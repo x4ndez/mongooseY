@@ -67,7 +67,9 @@ module.exports = {
 
             const deleteUserId = req.body._id;
 
+
             const query = await User.findByIdAndDelete(deleteUserId);
+            await Thought.deleteMany({ username: query.username });
 
             res.status(200).json(query);
 
