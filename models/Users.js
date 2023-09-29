@@ -14,8 +14,8 @@ const usersSchema = new Schema(
             type: String,
             required: true,
             unique: true,
-            //TODO: Add validation for email >> https://mongoosejs.com/docs/validation.html
-            // match: ,
+            // Add validation for email >> https://mongoosejs.com/docs/validation.html
+            match: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
         },
         thoughts: [
             {
